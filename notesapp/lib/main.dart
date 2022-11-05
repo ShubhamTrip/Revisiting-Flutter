@@ -1,15 +1,18 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_import, unused_local_variable
 
 import 'package:flutter/material.dart';
 import "package:supabase_flutter/supabase_flutter.dart";
+import "package:flutter_dotenv/flutter_dotenv.dart";
 
-const supabaseUrl = 'https://bcdqrcwvtqbeknkafree.supabase.co';
-const supabaseKey = String.fromEnvironment(
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJjZHFyY3d2dHFiZWtua2FmcmVlIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njc2NDg1NzgsImV4cCI6MTk4MzIyNDU3OH0.2DVyfsmG5GBvyDqor3lr5vdbvtNG7XAqiPe56NtayfY');
 
 Future<void> main() async {
-  await Supabase.initialize(url: supabaseUrl, anonKey: supabaseKey);
-  // ignore: prefer_const_constructors
+  WidgetsFlutterBinding.ensureInitialized()
+  
+  await dotenv.load();
+  
+  String supabaseUrl = dotenv.env["SUPABASE_URL"] ?? "";
+  String supabasekey =  dotenv.env["SUPABASE_KEY"] ?? "";
+
   runApp(const NotesApp());
 }
 
