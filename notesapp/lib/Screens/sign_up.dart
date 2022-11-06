@@ -1,11 +1,10 @@
-// ignore_for_file: await_only_futures, use_build_context_synchronously, prefer_const_constructors, use_key_in_widget_constructors, must_be_immutable, unused_import, prefer_final_fields
 import 'package:flutter/material.dart';
-import 'package:notesapp/Screens/sign_up.dart';
 import 'package:notesapp/constants.dart';
-import 'homepage.dart';
 import 'package:notesapp/supabaseNet.dart';
 
-class LoginPage extends StatelessWidget {
+import 'login_page.dart';
+
+class SignUpPage extends StatelessWidget {
   SupabaseNet supabaseNet = SupabaseNet();
   TextEditingController controller = TextEditingController();
   TextEditingController passcontroller = TextEditingController();
@@ -17,7 +16,7 @@ class LoginPage extends StatelessWidget {
           toolbarHeight: 0,
         ),
         body: Container(
-            padding: EdgeInsets.all(50),
+            padding: const EdgeInsets.all(50),
             child: Align(
                 alignment: Alignment.center,
                 child: ListView(
@@ -27,7 +26,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     Container(
                       child: Text(
-                        'Welcome, Login',
+                        'Register',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 26,
@@ -45,22 +44,22 @@ class LoginPage extends StatelessWidget {
                         decoration: BoxDecoration(
                             color: Colors.grey[300],
                             borderRadius: BorderRadius.circular(100)),
-                        child: Icon(Icons.person,
+                        child: const Icon(Icons.person,
                             color: Colors.blueGrey, size: 50),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
                     Container(
                       width: 260,
                       child: TextField(
                         controller: controller,
-                        style: TextStyle(color: Colors.black),
+                        style: const TextStyle(color: Colors.black),
                         decoration: kInputDecorantion,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Container(
@@ -68,52 +67,37 @@ class LoginPage extends StatelessWidget {
                       child: TextField(
                         controller: passcontroller,
                         obscureText: true,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.black,
                         ),
                         decoration: kInputDecorantion,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 60,
                     ),
                     ElevatedButton(
                         onPressed: () async {
-                          await supabaseNet.signIn(
+                          await supabaseNet.signUpId(
                               controller.text, passcontroller.text);
 
+                          // ignore: use_build_context_synchronously
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomePage()));
+                                  builder: (context) => LoginPage()));
                         },
                         child: Padding(
-                            padding: EdgeInsets.all(15),
+                            padding: const EdgeInsets.all(15),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               // ignore: prefer_const_literals_to_create_immutables
                               children: <Widget>[
-                                Text('Sign In',
+                                const Text('Sign Up',
                                     style: TextStyle(color: Colors.white))
                               ],
                             ))),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    GestureDetector(
-                      child: Container(
-                          child: Text(
-                        'New Here? Register.',
-                        style: TextStyle(color: Colors.blue),
-                      )),
-                      onTap: () => {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SignUpPage()))
-                      },
-                    )
                   ],
                 ))));
   }

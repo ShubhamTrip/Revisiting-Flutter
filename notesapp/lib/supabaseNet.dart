@@ -9,16 +9,23 @@ const supabaseKey =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJjZHFyY3d2dHFiZWtua2FmcmVlIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njc2NDg1NzgsImV4cCI6MTk4MzIyNDU3OH0.2DVyfsmG5GBvyDqor3lr5vdbvtNG7XAqiPe56NtayfY';
 
 class SupabaseNet {
-  final client = SupabaseClient(supabaseUrl, supabaseKey);
+  final clients = SupabaseClient(supabaseUrl, supabaseKey);
 
   Future<void> signUpId(String emailid, String passwords) async {
-    await client.auth.signUp(email: emailid, password: passwords);
+    await clients.auth.signUp(email: emailid, password: passwords);
   }
 
   Future<void> signIn(String email, String password) async {
-    final response = await Supabase.instance.client.auth
-        .signInWithPassword(email: email, password: password);
+    final response =
+        await clients.auth.signInWithPassword(email: email, password: password);
+
     final Session? session = response.session;
     final User? user = response.user;
+  }
+
+  getData() async {
+    var response = await clients.from('noteapp').select('*');
+
+    return response;
   }
 }
