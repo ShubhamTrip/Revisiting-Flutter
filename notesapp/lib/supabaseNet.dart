@@ -25,7 +25,6 @@ class SupabaseNet {
 
   getData() async {
     var response = await clients.from('noteapp').select('*');
-
     return response;
   }
 }

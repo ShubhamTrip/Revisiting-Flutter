@@ -103,9 +103,10 @@ class LoginPage extends StatelessWidget {
                     ),
                     GestureDetector(
                       child: Container(
-                          child: Text(
-                        'New Here? Register.',
-                        style: TextStyle(color: Colors.blue),
+                          child: ListTile(
+                        leading: Text('New Here? Register.'),
+                        // trailing: Container(child: Image.asset(''),),
+                        isThreeLine: false,
                       )),
                       onTap: () => {
                         Navigator.push(
