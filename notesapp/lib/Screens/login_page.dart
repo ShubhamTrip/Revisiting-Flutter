@@ -101,19 +101,32 @@ class LoginPage extends StatelessWidget {
                     SizedBox(
                       height: 30,
                     ),
-                    GestureDetector(
-                      child: Container(
-                          child: ListTile(
-                        leading: Text('New Here? Register.'),
-                        // trailing: Container(child: Image.asset(''),),
-                        isThreeLine: false,
-                      )),
-                      onTap: () => {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SignUpPage()))
-                      },
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          child: Container(
+                              child: Text(
+                            'New Here? Register.',
+                            style: TextStyle(color: Colors.blue),
+                          )),
+                          onTap: () => {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignUpPage()))
+                          },
+                        ),
+                        GestureDetector(
+                          child: Container(
+                              child: Image.asset(
+                            'assets/google.png',
+                            height: 30,
+                            width: 30,
+                          )),
+                          onTap: () => {},
+                        )
+                      ],
                     )
                   ],
                 ))));
