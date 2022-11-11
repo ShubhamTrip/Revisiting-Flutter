@@ -33,6 +33,10 @@ class _HomePageState extends State<HomePage> {
           toolbarHeight: 50,
           backgroundColor: Colors.black,
           title: Text('Notes'),
+          centerTitle: true,
+          leading: GestureDetector(
+            child: Icon(Icons.notes, color: Colors.white),
+          ),
         ),
         body: SafeArea(
           child: Container(

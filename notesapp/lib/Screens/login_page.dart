@@ -117,15 +117,6 @@ class LoginPage extends StatelessWidget {
                                     builder: (context) => SignUpPage()))
                           },
                         ),
-                        GestureDetector(
-                          child: Container(
-                              child: Image.asset(
-                            'assets/google.png',
-                            height: 30,
-                            width: 30,
-                          )),
-                          onTap: () => {},
-                        )
                       ],
                     )
                   ],

@@ -27,4 +27,10 @@ class SupabaseNet {
     var response = await clients.from('noteapp').select('*');
     return response;
   }
+
+  addData(var title, var content) async {
+    final data = await clients
+        .from('noteapp')
+        .insert({'title': '${title}', 'content': '${content}'});
+  }
 }
